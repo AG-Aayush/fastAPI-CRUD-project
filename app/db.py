@@ -1,15 +1,18 @@
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
 from sqlalchemy.orm import DeclarativeBase
+from dotenv import load_dotenv
+import os
 
-DATABASE_URL='postgresql+asyncpg://postgres:Aayu$h123@localhost:5432/crud_db'
+load_dotenv()
 
-engine = create_async_engine(DATABASE_URL, echo = True)
+DATABASE_URL = os.getenv("DATABASE_URL")
+print("DB URL:", DATABASE_URL)  # ← add this temporarily to debug
+engine = create_async_engine(DATABASE_URL, echo=True)
 
 SessionLocal = async_sessionmaker(
-    bind = engine,
-    class_ = AsyncSession,
+    bind=engine,
+    class_=AsyncSession,
     expire_on_commit=False
-
 )
 
 class Base(DeclarativeBase):

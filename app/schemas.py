@@ -19,5 +19,7 @@ class NoteCreate(BaseModel):
 
 class NoteResponse(NoteCreate):
     id: int
-    class config:
+    owner_id: int
+
+    class Config:            # ← was lowercase 'config', broke ORM mode
         from_attributes = True
