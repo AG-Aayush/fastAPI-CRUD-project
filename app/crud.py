@@ -1,7 +1,27 @@
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.models import Note
-from app.schemas import NoteCreate
+from app.models import Note, User
+from app.schemas import NoteCreate, UserCreate
+from app.auth import hash_password
+
+async def create_user(db: AsyncSession, user: UserCreate):
+    db_user = User(
+        username = user.username,
+        email=user.email,
+        password= hash_password(user.password)
+
+    )
+
+    db.add(db_user)
+    await db.commit()
+    await db.refresh(db_user)
+    return db_user
+
+async def get_user_by_email(db: AsyncSession, email:str):
+    result= await db.execute(
+        select(User).where(User.email == email)
+    )
+    return result.scalar_one_or_none()
 
 async def create_note(db: AsyncSession, note:NoteCreate):
     db_note = Note(
