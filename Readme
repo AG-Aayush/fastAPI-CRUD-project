@@ -1,4 +1,4 @@
-FastAPI Notes CRUD API
+//FastAPI Notes CRUD API
 A REST API for managing personal notes with user authentication, built with FastAPI and PostgreSQL.
 Features
 
@@ -8,7 +8,7 @@ Create, read, update, and delete notes
 Each user can only access their own notes
 Async database operations
 
-Tech Stack
+//Tech Stack
 
 FastAPI — web framework
 PostgreSQL — database
@@ -19,7 +19,7 @@ passlib + bcrypt — password hashing
 python-jose — JWT tokens
 uvicorn — ASGI server
 
-Project Structure
+//Project Structure
 CRUD_Project/
 ├── .env                  # environment variables (not committed)
 ├── .gitignore
@@ -34,25 +34,24 @@ CRUD_Project/
     └── auth.py           # JWT and password hashing
 Getting Started
 Prerequisites
-
+//
 Python 3.10+
 PostgreSQL installed and running
 
-Installation
+//Installation
 1. Clone the repository
-bashgit clone https://github.com/your-username/CRUD_Project.git
+bashgit clone https://github.com/AG-Aayush/fastAPI-CRUD-project.git
 cd CRUD_Project
 2. Create and activate a virtual environment
-bashpython -m venv .venv
+bashpython -m venv environment
 
-# Windows
-.venv\Scripts\activate
+//# Windows
+environment\Scripts\activate\
 
-# Mac/Linux
-source .venv/bin/activate
-3. Install dependencies
+//3. Install dependencies
 bashpip install -r requirements.txt
-4. Create a .env file in the project root
+
+//4. Create a .env file in the project root
 envDATABASE_URL="postgresql+asyncpg://postgres:yourpassword@localhost:5432/crud_db"
 5. Create the database in PostgreSQL
 sqlCREATE DATABASE crud_db;
