@@ -1,95 +1,61 @@
-//FastAPI Notes CRUD API
-A REST API for managing personal notes with user authentication, built with FastAPI and PostgreSQL.
-Features
+📒 FastAPI Notes CRUD API
 
+A simple REST API for managing personal notes with user authentication using FastAPI and PostgreSQL.
+
+🚀 Features
 User registration and login
 JWT authentication
-Create, read, update, and delete notes
-Each user can only access their own notes
-Async database operations
-
-//Tech Stack
-
-FastAPI — web framework
-PostgreSQL — database
-SQLAlchemy — ORM (async)
-asyncpg — async PostgreSQL driver
-Pydantic — data validation
-passlib + bcrypt — password hashing
-python-jose — JWT tokens
-uvicorn — ASGI server
-
-//Project Structure
+Create, read, update, delete notes
+Each user can access only their own notes
+Async database support
+🧰 Tech Stack
+FastAPI
+PostgreSQL
+SQLAlchemy (async)
+asyncpg
+Pydantic
+JWT (python-jose)
+bcrypt (passlib)
+Uvicorn
+📁 Project Structure
 CRUD_Project/
-├── .env                  # environment variables (not committed)
-├── .gitignore
+├── app/
+│   ├── main.py
+│   ├── db.py
+│   ├── models.py
+│   ├── schemas.py
+│   ├── crud.py
+│   ├── routes.py
+│   └── auth.py
+├── .env
 ├── requirements.txt
-└── app/
-    ├── main.py           # FastAPI app and startup
-    ├── db.py             # database connection and session
-    ├── models.py         # SQLAlchemy table models
-    ├── schemas.py        # Pydantic request/response schemas
-    ├── crud.py           # database operations
-    ├── routes.py         # API endpoints
-    └── auth.py           # JWT and password hashing
-Getting Started
-Prerequisites
-//
-Python 3.10+
-PostgreSQL installed and running
-
-//Installation
-1. Clone the repository
-bashgit clone https://github.com/AG-Aayush/fastAPI-CRUD-project.git
+⚙️ Setup
+1. Clone repo
+git clone https://github.com/AG-Aayush/fastAPI-CRUD-project.git
 cd CRUD_Project
-2. Create and activate a virtual environment
-bashpython -m venv environment
+2. Create virtual environment
+python -m venv environment
+environment\Scripts\activate
+3. Install dependencies
+pip install -r requirements.txt
+4. Create .env
+DATABASE_URL=postgresql+asyncpg://postgres:yourpassword@localhost:5432/crud_db
+5. Create database
+CREATE DATABASE crud_db;
+6. Run server
+uvicorn app.main:app --reload
+📡 API
+Auth
+POST /notes/register → Register user
+POST /notes/login → Login user
+Notes
+GET /notes/ → Get all notes
+POST /notes/ → Create note
+GET /notes/{id} → Get note
+PUT /notes/{id} → Update note
+DELETE /notes/{id} → Delete note
+🧪 Test
 
-//# Windows
-environment\Scripts\activate\
+Open:
 
-//3. Install dependencies
-bashpip install -r requirements.txt
-
-//4. Create a .env file in the project root
-envDATABASE_URL="postgresql+asyncpg://postgres:yourpassword@localhost:5432/crud_db"
-5. Create the database in PostgreSQL
-sqlCREATE DATABASE crud_db;
-6. Run the server
-bashuvicorn app.main:app --reload
-The API will be running at http://127.0.0.1:8000
-API Endpoints
-Authentication
-MethodEndpointDescriptionPOST/notes/registerRegister a new userPOST/notes/loginLogin and get JWT token
-Notes (requires authentication)
-MethodEndpointDescriptionGET/notes/Get all your notesPOST/notes/Create a new noteGET/notes/{note_id}Get a single notePUT/notes/{note_id}Update a noteDELETE/notes/{note_id}Delete a note
-Testing the API
-Visit http://127.0.0.1:8000/docs for the interactive Swagger UI.
-Step 1 — Register
-jsonPOST /notes/register
-{
-  "username": "yourname",
-  "email": "you@email.com",
-  "password": "yourpassword"
-}
-Step 2 — Login
-jsonPOST /notes/login
-{
-  "email": "you@email.com",
-  "password": "yourpassword"
-}
-Copy the access_token from the response.
-Step 3 — Authorize
-Click the 🔒 Authorize button in Swagger UI and paste your token.
-Step 4 — Create a note
-jsonPOST /notes/
-{
-  "title": "My first note",
-  "content": "This is working!"
-}
-Environment Variables
-VariableDescriptionDATABASE_URLPostgreSQL connection string
-Generating requirements.txt
-bashpip freeze > requirements.txt
-License
-MIT
+http://127.0.0.1:8000/docs
