@@ -7,7 +7,8 @@ from app.crud import create_user, get_user_by_email
 from app.auth import verify_password,create_access_token
 
 
-router = APIRouter(prefix="/notes", tags=['Notes', 'Authentication'])
+router = APIRouter(prefix="/notes",tags=["Notes"])
+auth_router = APIRouter(tags=["Authentication"])
 
 @router.post("/register")
 async def register(user: UserCreate, db: AsyncSession = Depends(get_db)):
