@@ -2,6 +2,8 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from app.routes import router, auth_router
 from app.db import engine, Base
+from fastapi.responses import RedirectResponse
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -18,4 +20,4 @@ app.include_router(router)
 
 @app.get("/")
 async def home():
-    return {"message": "FastAPI CRUD Running"}
+    return RedirectResponse(url="/docs")
