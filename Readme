@@ -30,32 +30,32 @@ CRUD_Project/
 ├── .env
 ├── requirements.txt
 ⚙️ Setup
-1. Clone repo
+1. Clone Repository
 git clone https://github.com/AG-Aayush/fastAPI-CRUD-project.git
 cd CRUD_Project
-2. Create virtual environment
+2. Create Virtual Environment
 python -m venv environment
 environment\Scripts\activate
-3. Install dependencies
+3. Install Dependencies
 pip install -r requirements.txt
-4. Create .env
+4. Create .env File
 DATABASE_URL=postgresql+asyncpg://postgres:yourpassword@localhost:5432/crud_db
-5. Create database
+5. Create Database
 CREATE DATABASE crud_db;
-6. Run server
+6. Run Server
 uvicorn app.main:app --reload
-📡 API
-Auth
+📡 API Endpoints
+🔐 Authentication
 POST /notes/register → Register user
 POST /notes/login → Login user
-Notes
+📝 Notes
 GET /notes/ → Get all notes
 POST /notes/ → Create note
 GET /notes/{id} → Get note
 PUT /notes/{id} → Update note
 DELETE /notes/{id} → Delete note
-🧪 Test
+🧪 Test API
 
-Open:
+Open Swagger UI:
 
 http://127.0.0.1:8000/docs
